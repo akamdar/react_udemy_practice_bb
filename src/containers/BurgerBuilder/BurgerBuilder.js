@@ -45,15 +45,15 @@ class BurgerBuilder extends Component {
     const oldPrice = this.state.totalPrice;
     const updatedPrice = oldPrice - INGREDIENT_PRICES[type];
     this.setState({ ingredients: updatedIngredient, totalPrice: updatedPrice});
-    
-
   }
 
   render() {
     return (
       <Fragment>
         <Burger ingredients={this.state.ingredients} />
-        <BuildControls ingredientAdd={this.addIngredientHandler}/>
+        <BuildControls 
+          ingredientAdd={this.addIngredientHandler}
+          ingredientRemove={this.removeIngredientHandler}/>
       </Fragment>
     )
   }
