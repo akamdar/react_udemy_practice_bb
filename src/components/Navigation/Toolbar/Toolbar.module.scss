@@ -12,8 +12,16 @@
     background-color: #703B09;
     color: #FFFFFF;
     z-index: 90;
+    .Logo {
+        height: 80%;
+    }
+    nav {
+        height: 100%;
+    }
 }
 
-.Toolbar nav {
-    height: 100%;;
+@media (max-width: 499px) {
+    .DesktopOnly {
+        display: none;
+    }
 }
