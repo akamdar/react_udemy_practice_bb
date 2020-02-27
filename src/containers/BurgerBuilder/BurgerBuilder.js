@@ -4,8 +4,8 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
   salad: 10,
@@ -80,31 +80,15 @@ class BurgerBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    // alert('You continue!!');
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Ankit Kamdar',
-        address: {
-          street: 'Teststreet 1',
-          zipcode: '411045',
-          city: 'Pune',
-          state: 'Maharashtra',
-          country: 'India'
-        },
-        email: 'test1@test.com'
-      },
-      deliveryMethod: 'fastest'
+    const location = {
+      pathname: '/checkout',
+      state: {
+        ingredients: this.state.ingredients,
+        price: this.state.totalPrice
+      }
     }
-    axios.post('/order.json', order)
-      .then(response => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch(error => {
-        this.setState({ loading: false, purchasing: false });
-      });
+    this.props.history.push(location);
+    // alert('You continue!!');
   }
 
   render() {
